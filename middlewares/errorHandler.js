@@ -34,6 +34,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name == "invalid password") {
     status = 401;
     message = err.name;
+  } else if (err.name == "data required") {
+    status = 400;
+    message = "data still has a relationship to other";
   }
 
   res.status(status).json({ message });

@@ -13,6 +13,14 @@ class Todo {
     }
   }
 
+  static async findByCategoryId(data) {
+    try {
+      return await this.getCollection().find({ CategoryId: data }).toArray();
+    } catch (err) {
+      return err;
+    }
+  }
+
   static async findMyData(id) {
     try {
       return await this.getCollection().find({ UserId: id }).toArray();
