@@ -123,7 +123,7 @@ class Controller {
 
   static async delete(req, res, next) {
     try {
-      const { _id } = req.params;
+      const { id: _id } = req.params;
 
       const todo = await Todo.destroy(_id);
 
