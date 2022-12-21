@@ -25,7 +25,6 @@ class Controller {
         username,
         email,
         password: hash(password),
-        role: "user",
       });
 
       res.status(201).json({ msg: "success register" });
