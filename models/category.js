@@ -1,3 +1,5 @@
+const { getDb, ObjectId } = require("../config/mongo");
+
 class Category {
   static getCollection() {
     return getDb().collection("Category");

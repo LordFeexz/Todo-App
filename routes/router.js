@@ -11,6 +11,6 @@ router.use("/auth", authRouter);
 
 router.use("/todo", authentication, todoRouter);
 
-router.use("/category", authentication, categoryRouter);
+router.use("/category", categoryRouter);
 
 module.exports = router;

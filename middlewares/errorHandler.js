@@ -17,7 +17,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name == "invalid input") {
     status = 400;
     message = err.name;
-  } else if (err.name == "invalid token") {
+  } else if (err.name == "invalid token" || err.name == "JsonWebTokenError") {
     status = 401;
     message = err.name;
   } else if (err.name == "Forbidden") {

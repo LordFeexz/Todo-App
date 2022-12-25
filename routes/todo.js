@@ -6,6 +6,8 @@ router.get("/", Controller.getMyData);
 
 router.post("/", Controller.create);
 
+router.patch("/category/:id", Controller.addCategory);
+
 router.patch("/:id", Controller.completed);
 
 router.delete("/:id", Controller.delete);

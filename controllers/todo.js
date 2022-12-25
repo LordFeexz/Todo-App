@@ -62,8 +62,6 @@ class Controller {
 
       if (!todos || todos.length < 1) throw { name: "data not found" };
 
-      if (!todos.ok) throw { name: "fail auth to db" };
-
       const categories = await Category.findAll();
 
       const result = todos.map((el) => {
@@ -102,12 +100,12 @@ class Controller {
   static async create(req, res, next) {
     try {
       const { _id } = req.user;
-      const { name, CategoryId } = req.body;
+      const { name } = req.body;
 
       const todo = await Todo.create({
         name,
         UserId: _id,
-        CategoryId,
+        CategoryId: null,
         complete: false,
         startDate: new Date(),
         finishDate: null,
@@ -130,6 +128,23 @@ class Controller {
       if (!todo.acknowledged) throw { name: "failed delete" };
 
       res.status(200).json({ message: "success delete" });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async addCategory(req, res, next) {
+    try {
+      const { id: _id } = req.params;
+      const { CategoryId } = req.body;
+
+      const todo = await Todo.updateData(_id, {
+        CategoryId,
+      });
+
+      if (!todo.acknowledged) throw { name: "failed update" };
+
+      res.status(201).json({ message: "success update" });
     } catch (err) {
       next(err);
     }
